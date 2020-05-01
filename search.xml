@@ -90,10 +90,10 @@
 <pre><code>float i = 0.1f;
 float j = 0.2f;
 float k = i + j;
-System.out.println(k == 0.3f)</code></pre><p>显示结果同上。</p>
+System.out.println(k == 0.3)</code></pre><p>显示结果同上。</p>
 <p>以下为Hexo代码块测试：  </p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> i = <span class="number">0.1f</span>;  </span><br><span class="line"><span class="keyword">float</span> j = <span class="number">0.2f</span>;  </span><br><span class="line"><span class="keyword">float</span> k = i + j;  </span><br><span class="line">System.out.println(k == <span class="number">0.3f</span>)  </span><br></pre></td></tr></table></figure>  
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> i = <span class="number">0.1f</span>;  </span><br><span class="line"><span class="keyword">float</span> j = <span class="number">0.2f</span>;  </span><br><span class="line"><span class="keyword">float</span> k = i + j;  </span><br><span class="line">System.out.println(k == <span class="number">0.3</span>)  </span><br></pre></td></tr></table></figure>  
 <blockquote>
 </blockquote>
 <h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
@@ -187,6 +187,82 @@ System.out.println(k == 0.3f)</code></pre><p>显示结果同上。</p>
       </categories>
       <tags>
         <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我个人的IDEA常用配置</title>
+    <url>/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="我个人的IDEA常用配置"><a href="#我个人的IDEA常用配置" class="headerlink" title="我个人的IDEA常用配置"></a>我个人的IDEA常用配置</h1><h2 id="修改项目的Target-bytecode-version"><a href="#修改项目的Target-bytecode-version" class="headerlink" title="修改项目的Target bytecode version"></a>修改项目的Target bytecode version</h2><blockquote>
+<ol>
+<li><p>File -&gt; Setting   </p>
+</li>
+<li><p>找到Java Compiler项  </p>
+</li>
+</ol>
+<img src="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/Target_bytecode_version.png" class="" title="Target bytecode version">  
+
+<ol>
+<li>将项目的Target bytecode version 值设置为本地Java的版本。</li>
+</ol>
+<a id="more"></a>  
+
+<ol start="2">
+<li><p>File -&gt; Other Setting -&gt; Setting for New Projects  </p>
+</li>
+<li><p>重复第3步</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="修改Project-SDK-版本、Project-language-level-以及-Modules-language-level"><a href="#修改Project-SDK-版本、Project-language-level-以及-Modules-language-level" class="headerlink" title="修改Project SDK 版本、Project language level 以及 Modules language level"></a>修改Project SDK 版本、Project language level 以及 Modules language level</h2><blockquote>
+<ol>
+<li><p>File -&gt; Project Struture  </p>
+</li>
+<li><p>找到Project项  </p>
+</li>
+</ol>
+<img src="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/ProjectSetting.png" class="" title="ProjectSetting">  
+
+<ol start="3">
+<li><p>将Project SDK 版本与Project language level值设置为本地&gt;Java的版本。  </p>
+</li>
+<li><p>找到Modules项  </p>
+</li>
+</ol>
+<img src="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/ModulesSetting.png" class="" title="ModulesSetting"> 
+
+<ol start="5">
+<li><p>将Modules language level值设置为本地Java的版本。</p>
+</li>
+<li><p>File -&gt; Other Setting -&gt; Structure for New Projects  </p>
+</li>
+<li><p>重复第3步。  </p>
+</li>
+</ol>
+</blockquote>
+<h2 id="修改自带Maven的默认仓库路径。"><a href="#修改自带Maven的默认仓库路径。" class="headerlink" title="修改自带Maven的默认仓库路径。"></a>修改自带Maven的默认仓库路径。</h2><blockquote>
+<p>IDEA自带的Maven的仓库路径默认在C盘User文件夹，不是很方便管&gt;理。 </p>
+<p>我们可以修改至指定文件夹。</p>
+<ol>
+<li><p>File -&gt; Other Setting -&gt; Setting for New Projects   </p>
+</li>
+<li><p>找到Maven项  </p>
+</li>
+</ol>
+<img src="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/Maven.png" class="" title="Maven"> 
+
+<ol start="3">
+<li><p>在Local repository行勾选override，并指定自定义路径。  </p>
+</li>
+<li><p>以上设置只对以后新建的项目有效，如果有旧项目记得对就项目重复步骤2和3。</p>
+</li>
+</ol>
+</blockquote>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>IDEA</tag>
       </tags>
   </entry>
 </search>
