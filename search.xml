@@ -1,9 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Test</title>
+    <title>MarKdown学习笔记</title>
     <url>/2020/04/30/Test/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="MarkDown学习笔记"><a href="#MarkDown学习笔记" class="headerlink" title="MarkDown学习笔记"></a>MarkDown学习笔记</h1><a id="more"></a>
+
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><blockquote>
+<pre><code># 一级标题  
+## 二级标题  
+### 三级标题  
+#### 四级标题  
+##### 五级标题  
+###### 六级标题  </code></pre><p>效果如下：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6></blockquote>
+<h2 id="段落格式"><a href="#段落格式" class="headerlink" title="段落格式"></a>段落格式</h2><blockquote>
+<p>段落的换行是使用两个以上空格加上回车。  </p>
+</blockquote>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>Markdown 支持有序列表和无序列表。</p>
+<blockquote>
+<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>无序列表使用星号(*)、加号(+)或是减号(-)作为列表标记：</p>
+<pre><code>* 第一项
++ 第二项
+- 第三项</code></pre><p>显示效果如下：</p>
+<ul>
+<li>第一项</li>
+</ul>
+<ul>
+<li>第二项</li>
+</ul>
+<ul>
+<li>第三项</li>
+</ul>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>有序列表使用数字并加上 . 号（注意点后空格）来表示，如：</p>
+<pre><code>1. 第一项
+2. 第二项
+3. 第三项</code></pre><p>显示效果如下：</p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项  </li>
+</ol>
+<h3 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h3><p>列表嵌套只需在子列表中的选项添加四个空格或一个Tab即可：</p>
+<pre><code>1. 第一项：  
+     - 第一项嵌套的第一个元素  
+     - 第一项嵌套的第二个元素  
+ 1. 第二项：  
+     - 第二项嵌套的第一个元素  
+     - 第二项嵌套的第二个元素  </code></pre><p>显示结果如下：</p>
+<ol>
+<li>第一项：<ul>
+<li>第一项嵌套的第一个元素</li>
+<li>第一项嵌套的第二个元素</li>
+</ul>
+</li>
+<li>第二项：<ul>
+<li>第二项嵌套的第一个元素</li>
+<li>第二项嵌套的第二个元素</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><blockquote>
+<p>区块引用是在段落开头使用 &gt; 符号 ，然后后面紧跟一个空格符号：  </p>
+<pre><code>&gt; 区块引用  
+&gt; 菜鸟教程  
+&gt; 学的不仅是技术更是梦想  </code></pre><p>显示结果如下:  </p>
+<blockquote>
+<p>区块引用<br>菜鸟教程<br>学的不仅是技术更是梦想  </p>
+</blockquote>
+<p>另外区块是可以嵌套的，一个 &gt; 符号是最外层，两个 &gt; 符号是第一层嵌套，以此类推：</p>
+<pre><code>&gt; 最外层
+&gt; 第一层嵌套
+&gt; &gt; 第二层嵌套</code></pre><p>显示结果如下：</p>
+<blockquote>
+<p>最外层</p>
+<blockquote>
+<p>第一层嵌套</p>
+<blockquote>
+<p>第二层嵌套</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><blockquote>
+<p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来（`），例如:   </p>
+<p><code>printf()</code> 函数</p>
+<h3 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h3><p>代码区块使用 4 个空格或者一个制表符（Tab 键）。</p>
+<pre><code>float i = 0.1f;
+float j = 0.2f;
+float k = i + j;
+System.out.println(k == 0.3f)</code></pre><p>显示结果同上。</p>
+<p>以下为Hexo代码块测试：  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">  </span><br><span class="line">&gt;<span class="keyword">float</span> i = <span class="number">0.1f</span>;  </span><br><span class="line">&gt;<span class="keyword">float</span> j = <span class="number">0.2f</span>;  </span><br><span class="line">&gt;<span class="keyword">float</span> k = i + j;  </span><br><span class="line">&gt;System.out.println(k == <span class="number">0.3f</span>)  </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>  
+
+</blockquote>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
+<pre><code>[链接名称](链接地址)
+
+或者
+
+&lt;链接地址&gt;</code></pre><p>例如：</p>
+<pre><code>这是一个链接 [我的主页](https://yastone.github.io)</code></pre><p>显示结果如下：  </p>
+<p>这是一个链接 <a href="https://yastone.github.io">我的主页</a></p>
+<p>直接使用链接地址：</p>
+<pre><code>&lt;https://yastone.github.io&gt;  </code></pre><p>显示结果如下： </p>
+<p><a href="https://yastone.github.io">https://yastone.github.io</a>    </p>
+<h3 id="高级链接"><a href="#高级链接" class="headerlink" title="高级链接"></a>高级链接</h3><pre><code>这个链接用 1 作为网址变量 [Google][1]
+这个链接用 2 作为网址变量 [Me][2]
+然后在文档的结尾为变量赋值（网址）
+
+  [1]: http://www.google.com/
+  [2]: https://yastone.github.io</code></pre><p>显示结果如下： </p>
+<p>这个链接用 1 作为网址变量 <a href="http://www.google.com/" target="_blank" rel="noopener">Google</a><br>这个链接用 2 作为网址变量 <a href="https://yastone.github.io">Me</a>  </p>
+</blockquote>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><blockquote>
+<p>Markdown 图片语法格式如下：</p>
+<pre><code>![alt 属性文本](图片地址)  
+
+![alt 属性文本](图片地址 &quot;可选标题&quot;)</code></pre><p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的  <code>&lt;img&gt;</code>标签。</p>
+<pre><code>&lt;img src=&quot;www.baidu.com/baidu.png&quot; width=&quot;50%&quot;&gt;</code></pre></blockquote>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><blockquote>
+<p>Markdown 制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。</p>
+<ul>
+<li><p>语法格式如下：</p>
+<pre><code>|  表头   | 表头  |
+|  ----  | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |</code></pre></li>
+<li><p>以上代码显示结果如下：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>表头</th>
+<th>表头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+<tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+</tbody></table>
+<h3 id="对齐方式"><a href="#对齐方式" class="headerlink" title="对齐方式"></a>对齐方式</h3><p>我们可以设置表格的对齐方式：</p>
+<ul>
+<li><p>-: 设置内容和标题栏居右对齐。</p>
+</li>
+<li><p>:- 设置内容和标题栏居左对齐。</p>
+</li>
+<li><p>:-: 设置内容和标题栏居中对齐。</p>
+<pre><code>| 左对齐 | 右对齐 | 居中对齐 |
+| :-----| ----: | :----: |
+| 单元格 | 单元格 | 单元格 |
+| 单元格 | 单元格 | 单元格 |</code></pre></li>
+</ul>
+<p>以上代码显示结果如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">左对齐</th>
+<th align="right">右对齐</th>
+<th align="center">居中对齐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">单元格</td>
+<td align="right">单元格</td>
+<td align="center">单元格</td>
+</tr>
+<tr>
+<td align="left">单元格</td>
+<td align="right">单元格</td>
+<td align="center">单元格</td>
+</tr>
+</tbody></table>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
