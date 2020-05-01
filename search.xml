@@ -182,6 +182,9 @@ System.out.println(k == 0.3f)</code></pre><p>显示结果同上。</p>
 </tbody></table>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
       <tags>
         <tag>markdown</tag>
       </tags>
