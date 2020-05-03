@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Markdown学习笔记 |  Neko
+    Mybatis学习笔记（三）：输出结果的封装与resultMap的使用 |  Neko
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -45,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-Markdown学习笔记" class="article article-type-post" itemscope
+  <article id="post-Mybatis学习笔记（三）：输出结果的封装" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -53,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Markdown学习笔记
+  Mybatis学习笔记（三）：输出结果的封装与resultMap的使用
 </h1>
  
 
@@ -62,12 +62,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/04/30/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-04-30T13:02:52.000Z" itemprop="datePublished">2020-04-30</time>
+      <a href="/2020/05/03/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E7%9A%84%E5%B0%81%E8%A3%85/" class="article-date">
+  <time datetime="2020-05-03T08:33:19.000Z" itemprop="datePublished">2020-05-03</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">tool</a>
+    <a class="article-category-link" href="/categories/code/">code</a>
   </div>
 
       
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1k</span>
+            <span class="post-count">696</span>
         </span>
     </span>
 
@@ -111,184 +111,20 @@
       
 
       
-      <h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><blockquote>
-<pre><code># 一级标题  
-## 二级标题  
-### 三级标题  
-#### 四级标题  
-##### 五级标题  
-###### 六级标题  </code></pre><p>效果如下：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><a id="more"></a>
-<h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6></blockquote>
-<h2 id="段落格式"><a href="#段落格式" class="headerlink" title="段落格式"></a>段落格式</h2><blockquote>
-<p>段落的换行是使用两个以上空格加上回车。  </p>
-</blockquote>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>Markdown 支持有序列表和无序列表。</p>
-<blockquote>
-<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>无序列表使用星号(*)、加号(+)或是减号(-)作为列表标记：</p>
-<pre><code>* 第一项
-+ 第二项
-- 第三项</code></pre><p>显示效果如下：</p>
-<ul>
-<li>第一项</li>
-</ul>
-<ul>
-<li>第二项</li>
-</ul>
-<ul>
-<li>第三项</li>
-</ul>
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>有序列表使用数字并加上 . 号（注意点后空格）来表示，如：</p>
-<pre><code>1. 第一项
-2. 第二项
-3. 第三项</code></pre><p>显示效果如下：</p>
-<ol>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项  </li>
-</ol>
-<h3 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h3><p>列表嵌套只需在子列表中的选项添加四个空格或一个Tab即可：</p>
-<pre><code>1. 第一项：  
-     - 第一项嵌套的第一个元素  
-     - 第一项嵌套的第二个元素  
- 1. 第二项：  
-     - 第二项嵌套的第一个元素  
-     - 第二项嵌套的第二个元素  </code></pre><p>显示结果如下：</p>
-<ol>
-<li>第一项：<ul>
-<li>第一项嵌套的第一个元素</li>
-<li>第一项嵌套的第二个元素</li>
-</ul>
-</li>
-<li>第二项：<ul>
-<li>第二项嵌套的第一个元素</li>
-<li>第二项嵌套的第二个元素</li>
-</ul>
-</li>
-</ol>
-</blockquote>
-<h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><blockquote>
-<p>区块引用是在段落开头使用 &gt; 符号 ，然后后面紧跟一个空格符号：  </p>
-<pre><code>&gt; 区块引用  
-&gt; 菜鸟教程  
-&gt; 学的不仅是技术更是梦想  </code></pre><p>显示结果如下:  </p>
-<blockquote>
-<p>区块引用<br>菜鸟教程<br>学的不仅是技术更是梦想  </p>
-</blockquote>
-<p>另外区块是可以嵌套的，一个 &gt; 符号是最外层，两个 &gt; 符号是第一层嵌套，以此类推：</p>
-<pre><code>&gt; 最外层
-&gt; 第一层嵌套
-&gt; &gt; 第二层嵌套</code></pre><p>显示结果如下：</p>
-<blockquote>
-<p>最外层</p>
-<blockquote>
-<p>第一层嵌套</p>
-<blockquote>
-<p>第二层嵌套</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><blockquote>
-<p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来（`），例如:   </p>
-<p><code>printf()</code> 函数</p>
-<h3 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h3><p>代码区块使用 4 个空格或者一个制表符（Tab 键）。</p>
-<pre><code>float i = 0.1f;
-float j = 0.2f;
-float k = i + j;
-System.out.println(k == 0.3)</code></pre><p>显示结果同上。 </p>
-<p>也可以用 ``` 包裹一段代码（注意前后不要有空格），并指定一种语言（也可以不指定）：  </p>
-</blockquote>
-<img src="/2020/04/30/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/code310X160.png" class="" title="code weight:">
+      <h2 id="resultType配置结果类型"><a href="#resultType配置结果类型" class="headerlink" title="resultType配置结果类型"></a>resultType配置结果类型</h2><p>resultType属性可以指定结果集的类型，它支持基本类型和实体类类型。 </p>
+<p>我们在前面的CRUD案例中已经对此属性进行过应用了。  </p>
+<p>需要注意的是，它和parameterType一样，如果注册过类型别名的，可以直接使用别名。没有注册过的必须 使用全限定类名。例如：我们的实体类此时必须是全限定类名（今天最后一个章节会讲解如何配置实体类的别名）  </p>
+<p>同时，当是实体类名称时，还有一个要求，<strong>实体类中的属性名称必须和查询语句中的列名保持一致，否则无法实现封装。</strong>  </p>
+<p>然而开发过程中总有一些特殊情况，当实体类中的属性名与数据库列名不一致时，该如何处理？答案是利用<code>resultMap</code>结果类型。</p>
+<a id="more"></a>
 
-<blockquote>
-<p>显示结果同上。 </p>
-</blockquote>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
-<pre><code>[链接名称](链接地址)
+<h2 id="特殊情况示例："><a href="#特殊情况示例：" class="headerlink" title="特殊情况示例："></a>特殊情况示例：</h2><h3 id="修改实体类"><a href="#修改实体类" class="headerlink" title="修改实体类"></a>修改实体类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer userId;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> Date userBirthday;</span><br><span class="line">    <span class="keyword">private</span> String userSex;</span><br><span class="line">    <span class="keyword">private</span> String userAddress;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//下面请自行生成getter和setter以及toString方法。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-或者
+<h3 id="映射配置"><a href="#映射配置" class="headerlink" title="映射配置"></a>映射配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"dao.IUserDao"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置 查询结果的列名和实体类的属性名的对应关系 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"userMap"</span> <span class="attr">type</span>=<span class="string">"domain.User"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 主键字段的对应 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"userId"</span> <span class="attr">column</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--非主键字段的对应--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"userName"</span> <span class="attr">column</span>=<span class="string">"username"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"userAddress"</span> <span class="attr">column</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"userSex"</span> <span class="attr">column</span>=<span class="string">"sex"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"userBirthday"</span> <span class="attr">column</span>=<span class="string">"birthday"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--配置查询所有--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">        select * from user</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 根据id查询用户 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">parameterType</span>=<span class="string">"Integer"</span> <span class="attr">resultMap</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">        select * from user where id = #&#123;userId&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 保存用户 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"saveUser"</span> <span class="attr">parameterType</span>=<span class="string">"domain.User"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 配置插入操作后，获取插入数据的id --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">selectKey</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span> <span class="attr">keyColumn</span>=<span class="string">"id"</span> <span class="attr">resultType</span>=<span class="string">"Integer"</span> <span class="attr">order</span>=<span class="string">"AFTER"</span>&gt;</span></span><br><span class="line">            select last_insert_id();</span><br><span class="line">        <span class="tag">&lt;/<span class="name">selectKey</span>&gt;</span></span><br><span class="line">        insert into user(username,address,sex,birthday) values(#&#123;userName&#125;,#&#123;userAddress&#125;,#&#123;userSex&#125;,#&#123;userBirthday&#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 更新用户 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUser"</span> <span class="attr">parameterType</span>=<span class="string">"domain.User"</span>&gt;</span></span><br><span class="line">        update user set username=#&#123;username&#125;,address=#&#123;userAddress&#125;,sex=#&#123;userSex&#125;,birthday=#&#123;userBirthday&#125; where id=#&#123;userId&#125;;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 删除用户 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteUser"</span> <span class="attr">parameterType</span>=<span class="string">"Integer"</span>&gt;</span></span><br><span class="line">        delete from user where id = #&#123;userId&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 根据名称模糊查询 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByName"</span> <span class="attr">parameterType</span>=<span class="string">"String"</span> <span class="attr">resultMap</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">        select * from user where username like #&#123;userName&#125;;</span><br><span class="line">        <span class="comment">&lt;!--select * from user where username like '%$&#123;value&#125;%';--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 获取用户的总记录条数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findTotal"</span> <span class="attr">resultMap</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">        select count(id) from user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-&lt;链接地址&gt;</code></pre><p>例如：</p>
-<pre><code>这是一个链接 [我的主页](https://yastone.github.io)</code></pre><p>显示结果如下：  </p>
-<p>这是一个链接 <a href="https://yastone.github.io">我的主页</a></p>
-<p>直接使用链接地址：</p>
-<pre><code>&lt;https://yastone.github.io&gt;  </code></pre><p>显示结果如下： </p>
-<p><a href="https://yastone.github.io">https://yastone.github.io</a>    </p>
-<h3 id="高级链接"><a href="#高级链接" class="headerlink" title="高级链接"></a>高级链接</h3><pre><code>这个链接用 1 作为网址变量 [Google][1]
-这个链接用 2 作为网址变量 [Me][2]
-然后在文档的结尾为变量赋值（网址）
+<h3 id="测试查询结果"><a href="#测试查询结果" class="headerlink" title="测试查询结果"></a>测试查询结果</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFindAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List&lt;User&gt; users = userDao.findAll();</span><br><span class="line">    <span class="keyword">for</span>(User user : users)&#123;</span><br><span class="line">        out.println(<span class="string">"-------------------------------------------"</span>);</span><br><span class="line">        out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  [1]: http://www.google.com/
-  [2]: https://yastone.github.io</code></pre><p>显示结果如下： </p>
-<p>这个链接用 1 作为网址变量 <a href="http://www.google.com/" target="_blank" rel="noopener">Google</a><br>这个链接用 2 作为网址变量 <a href="https://yastone.github.io">Me</a>  </p>
-</blockquote>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><blockquote>
-<p>Markdown 图片语法格式如下：</p>
-<pre><code>![alt 属性文本](图片地址)  
 
-![alt 属性文本](图片地址 &quot;可选标题&quot;)</code></pre><p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的  <code>&lt;img&gt;</code>标签。</p>
-<pre><code>&lt;img src=&quot;www.baidu.com/baidu.png&quot; width=&quot;50%&quot;&gt;</code></pre></blockquote>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><blockquote>
-<p>Markdown 制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。</p>
-<ul>
-<li><p>语法格式如下：</p>
-<pre><code>|  表头   | 表头  |
-|  ----  | ----  |
-| 单元格  | 单元格 |
-| 单元格  | 单元格 |</code></pre></li>
-<li><p>以上代码显示结果如下：</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>表头</th>
-<th>表头</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>单元格</td>
-<td>单元格</td>
-</tr>
-<tr>
-<td>单元格</td>
-<td>单元格</td>
-</tr>
-</tbody></table>
-<h3 id="对齐方式"><a href="#对齐方式" class="headerlink" title="对齐方式"></a>对齐方式</h3><p>我们可以设置表格的对齐方式：</p>
-<ul>
-<li><p>-: 设置内容和标题栏居右对齐。</p>
-</li>
-<li><p>:- 设置内容和标题栏居左对齐。</p>
-</li>
-<li><p>:-: 设置内容和标题栏居中对齐。</p>
-<pre><code>| 左对齐 | 右对齐 | 居中对齐 |
-| :-----| ----: | :----: |
-| 单元格 | 单元格 | 单元格 |
-| 单元格 | 单元格 | 单元格 |</code></pre></li>
-</ul>
-<p>以上代码显示结果如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">左对齐</th>
-<th align="right">右对齐</th>
-<th align="center">居中对齐</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">单元格</td>
-<td align="right">单元格</td>
-<td align="center">单元格</td>
-</tr>
-<tr>
-<td align="left">单元格</td>
-<td align="right">单元格</td>
-<td align="center">单元格</td>
-</tr>
-</tbody></table>
-</blockquote>
 
       
       <!-- reward -->
@@ -343,14 +179,14 @@ System.out.println(k == 0.3)</code></pre><p>显示结果同上。 </p>
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yastone.github.io/2020/04/30/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yastone.github.io/2020/05/03/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E7%9A%84%E5%B0%81%E8%A3%85/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
 
 
     </footer>
@@ -361,15 +197,20 @@ System.out.println(k == 0.3)</code></pre><p>显示结果同上。 </p>
   
   <nav class="article-nav">
     
-      <a href="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/" class="article-nav-link">
+      <a href="/2020/05/03/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9ASqlMapConfig-xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            我个人的IDEA常用配置
+            Mybatis学习笔记（四）：SqlMapConfig.xml配置文件
           
         </div>
       </a>
     
+    
+      <a href="/2020/05/03/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8E%E4%BB%A3%E7%90%86Dao%E5%AE%9E%E7%8E%B0CRUD%E6%93%8D%E4%BD%9C/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Mybatis学习笔记（二）：基于代理Dao实现CRUD操作</div>
+      </a>
     
   </nav>
 
