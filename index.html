@@ -84,6 +84,408 @@
     
     
     
+    <article id="post-Mybatis学习笔记（十）：Mybatis注解开发" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AMybatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/"
+    >Mybatis学习笔记（十）：Mybatis注解开发</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AMybatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" class="article-date">
+  <time datetime="2020-05-04T07:45:20.000Z" itemprop="datePublished">2020-05-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>这几年来注解开发越来越流行，Mybatis 也可以使用注解开发方式，这样我们就可以减少编写 Mapper 映射文件了。</p>
+<h2 id="mybatis-的常用注解说明"><a href="#mybatis-的常用注解说明" class="headerlink" title="mybatis 的常用注解说明"></a>mybatis 的常用注解说明</h2><p>@Insert:实现新增<br>@Update:实现更新<br>@Delete:实现删除<br>@Select:实现查询<br>@Result:实现结果集封装<br>@Results:可以与@Result 一起使用，封装多个结果集<br>@ResultMap:实现引用<br>@Results 定义的封装<br>@One:实现一对一结果集封装<br>@Many:实现一对多结果集封装<br>@SelectProvider: 实现动态 SQL 映射<br>@CacheNamespace:实现注解二级缓存的使用 </p>
+<h2 id="使用-Mybatis-注解实现基本CRUD"><a href="#使用-Mybatis-注解实现基本CRUD" class="headerlink" title="使用 Mybatis 注解实现基本CRUD"></a>使用 Mybatis 注解实现基本CRUD</h2><p>单表的 CRUD 操作是最基本的操作，前面我们的学习都是基于Mybaits的映射文件来实现的。 </p>
+      
+      <a class="article-more-link" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AMybatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Mybatis学习笔记（九）：Mybatis缓存" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/"
+    >Mybatis学习笔记（九）：Mybatis缓存</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/" class="article-date">
+  <time datetime="2020-05-04T06:55:34.000Z" itemprop="datePublished">2020-05-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>像大多数的持久化框架一样，Mybatis也提供了缓存策略，通过缓存策略来减少数据库的查询次数，从而提高性能。  </p>
+<p>Mybatis 中缓存分为一级缓存，二级缓存。</p>
+<h2 id="Mybatis一级缓存"><a href="#Mybatis一级缓存" class="headerlink" title="Mybatis一级缓存"></a>Mybatis一级缓存</h2><h3 id="1-证明一级缓存的存在"><a href="#1-证明一级缓存的存在" class="headerlink" title="1. 证明一级缓存的存在"></a>1. 证明一级缓存的存在</h3><p>一级缓存是SqlSession级别的缓存，只要SqlSession没有flush或close，它就存在。 </p>
+      
+      <a class="article-more-link" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Mybatis学习笔记（八）：延迟加载策略" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/"
+    >Mybatis学习笔记（八）：延迟加载策略</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" class="article-date">
+  <time datetime="2020-05-04T05:39:12.000Z" itemprop="datePublished">2020-05-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="Mybatis延迟加载策略"><a href="#Mybatis延迟加载策略" class="headerlink" title="Mybatis延迟加载策略"></a>Mybatis延迟加载策略</h2><p>通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。 </p>
+<h2 id="何为延迟加载"><a href="#何为延迟加载" class="headerlink" title="何为延迟加载?"></a>何为延迟加载?</h2><ul>
+<li><p>延迟加载：<br>就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载. 好处：先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多张表速 度要快。  </p>
+</li>
+<li><p>坏处：<br>因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗时间，所以可能造成用户等待时间变长，造成用户体验下降。 </p>
+</li>
+</ul>
+      
+      <a class="article-more-link" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Mybatis学习笔记（七）：多表查询之多对多" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/"
+    >Mybatis学习笔记（七）：多表查询之多对多</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/" class="article-date">
+  <time datetime="2020-05-04T04:30:48.000Z" itemprop="datePublished">2020-05-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="实现Role到User多对多"><a href="#实现Role到User多对多" class="headerlink" title="实现Role到User多对多"></a>实现Role到User多对多</h2><p>通过前面的学习，我们使用Mybatis实现一对多关系的维护。  </p>
+<p>多对多关系其实我们看成是双向的一对多关系。  </p>
+<h3 id="1-用户与角色的关系模型"><a href="#1-用户与角色的关系模型" class="headerlink" title="1. 用户与角色的关系模型"></a>1. 用户与角色的关系模型</h3><p>用户与角色的多对多关系模型如下： </p>
+<img src="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/ManyToMany.png" class="" title="ManyToMany">
+
+<p>在MySQL数据库中添加角色表，用户角色的中间表。 </p>
+<p>角色表 : </p>
+<img src="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/role.png" class="" title="role">
+
+<p>用户角色中间表：</p>
+<img src="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/UserRole.png" class="" title="UserRole">
+      
+      <a class="article-more-link" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Mybatis学习笔记（六）：多表查询之一对多" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E4%B8%80%E5%AF%B9%E5%A4%9A/"
+    >Mybatis学习笔记（六）：多表查询之一对多</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E4%B8%80%E5%AF%B9%E5%A4%9A/" class="article-date">
+  <time datetime="2020-05-04T02:55:24.000Z" itemprop="datePublished">2020-05-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>考虑实际开发中可能遇到的以下情况： </p>
+<p>现有一个简单的数据库包含一个User表和一个Account表。一个用户（User）可以有多个账户（Account）。  </p>
+<p>具体关系如下:  </p>
+<img src="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E4%B8%80%E5%AF%B9%E5%A4%9A/userAccount.png" class="" title="userAccount">
+
+<h2 id="一对一查询（多对一）"><a href="#一对一查询（多对一）" class="headerlink" title="一对一查询（多对一）"></a>一对一查询（多对一）</h2><ul>
+<li><p>需求：<br>查询所有账户信息，关联查询下单用户信息。 </p>
+</li>
+<li><p>注意：<br>因为一个账户信息只能供某个用户使用，所以从查询账户信息出发关联查询用户信息为一对一查询。如果从用户信息出发查询用户下的账户信息则为一对多查询，因为一个用户可以有多个账户。</p>
+</li>
+</ul>
+<h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><p>首先定义一个账户实体类，然后再定义一个AccountUser类并继承Account类，在其中定义User类的成员属性，继而编写对应的Dao接口以及xml配置信息。 </p>
+<p>这种方法定义了专门的po类作为输出类型，其中定义了sql查询结果集所有的字段。  </p>
+      
+      <a class="article-more-link" href="/2020/05/04/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E4%B8%80%E5%AF%B9%E5%A4%9A/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-Mybatis学习笔记（五）：动态SQL语句" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -124,7 +526,8 @@
       
 
       
-      <p>Mybatis的映射文件中，前面我们的SQL都是比较简单的，有些时候业务逻辑复杂时，我们的 SQL 是动态变化的，此时在前面的学习中我们的SQL就不能满足要求了。<br>参考的<a href="https://mybatis.org/mybatis-3/dynamic-sql.html" target="_blank" rel="noopener">官方文档</a>，描述如下：</p>
+      <p>Mybatis的映射文件中，前面我们的SQL都是比较简单的，有些时候业务逻辑复杂时，我们的 SQL 是动态变化的，此时在前面的学习中我们的SQL就不能满足要求了。 </p>
+<p>而动态SQL能帮助我们解决这些问题。其<a href="https://mybatis.org/mybatis-3/dynamic-sql.html" target="_blank" rel="noopener">官方文档</a>，描述如下： </p>
 <img src="/2020/05/03/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/DynamicSQL.png" class="" title="DynamicSQL">
 
 <h2 id="动态标签之-lt-where-gt-与-lt-if-gt-标签的联和使用"><a href="#动态标签之-lt-where-gt-与-lt-if-gt-标签的联和使用" class="headerlink" title="动态标签之&lt;where&gt;与&lt;if&gt;标签的联和使用"></a>动态标签之<code>&lt;where&gt;</code>与<code>&lt;if&gt;</code>标签的联和使用</h2>
@@ -467,175 +870,14 @@
 
 </article>
     
-    <article id="post-我个人的IDEA常用配置选项" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/"
-    >我个人的IDEA常用配置</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/" class="article-date">
-  <time datetime="2020-05-01T09:26:45.000Z" itemprop="datePublished">2020-05-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">tool</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="修改项目的Target-bytecode-version"><a href="#修改项目的Target-bytecode-version" class="headerlink" title="修改项目的Target bytecode version"></a>修改项目的Target bytecode version</h2><blockquote>
-<ol>
-<li><p>File -&gt; Setting   </p>
-</li>
-<li><p>找到Java Compiler项  </p>
-</li>
-</ol>
-<img src="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/Target_bytecode_version.png" class="" title="Target bytecode version">  
-
-<ol start="3">
-<li>将项目的Target bytecode version 值设置为本地Java的版本。</li>
-</ol>
-      
-      <a class="article-more-link" href="/2020/05/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-Markdown学习笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/30/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-    >Markdown学习笔记</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/04/30/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-04-30T13:02:52.000Z" itemprop="datePublished">2020-04-30</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">tool</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><blockquote>
-<pre><code># 一级标题  
-## 二级标题  
-### 三级标题  
-#### 四级标题  
-##### 五级标题  
-###### 六级标题  </code></pre><p>效果如下：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3>
-      
-      <a class="article-more-link" href="/2020/04/30/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
   </article>
   
 
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
   
 </section>
 </div>
