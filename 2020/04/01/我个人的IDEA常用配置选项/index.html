@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">228</span>
+            <span class="post-count">456</span>
         </span>
     </span>
 
@@ -175,6 +175,19 @@
 <li><p>以上设置只对以后新建的项目有效，如果有旧项目记得对旧项目重复步骤2和3。</p>
 </li>
 </ol>
+</blockquote>
+<h2 id="修改Maven工程的jdk版本相关的设置"><a href="#修改Maven工程的jdk版本相关的设置" class="headerlink" title="修改Maven工程的jdk版本相关的设置"></a>修改Maven工程的jdk版本相关的设置</h2><blockquote>
+<p>在上面的Maven的默认仓库路径设置中，可以看到IDEA自带的Maven的路径。</p>
+<img src="/2020/04/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/MavenDir.png" class="" title="MavenDir">
+
+<p>来到设置上显示的文件夹，打开conf文件夹，找到settings.xml，用记事本打开。</p>
+<p>在<code>&lt;profiles&gt;</code>下面添加以下设置：</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-11<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">activation</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>11<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>11<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>11<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span>   </span><br><span class="line">     <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：我的jdk版本是11，请把以上配置中的11改为你现在使用的jdk版本。</strong></p>
+<p>保存并重启IDEA。</p>
+<p>这样就可以彻底解决每次创建Maven项目后Build都会报”Error:java: 不再支持源选项 5。请使用 6 或更高版本”的错误。</p>
 </blockquote>
 
       

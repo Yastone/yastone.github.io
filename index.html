@@ -84,6 +84,176 @@
     
     
     
+    <article id="post-Spring学习笔记（八）：在Spring中使用AOP" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/08/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9C%A8Spring%E4%B8%AD%E4%BD%BF%E7%94%A8AOP/"
+    >Spring学习笔记（八）：在Spring中使用AOP</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/08/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9C%A8Spring%E4%B8%AD%E4%BD%BF%E7%94%A8AOP/" class="article-date">
+  <time datetime="2020-05-08T07:41:59.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="Spring中-AOP-的细节"><a href="#Spring中-AOP-的细节" class="headerlink" title="Spring中 AOP 的细节"></a>Spring中 AOP 的细节</h2><h3 id="AOP-相关术语"><a href="#AOP-相关术语" class="headerlink" title="AOP 相关术语"></a>AOP 相关术语</h3><ul>
+<li><p>Joinpoint(连接点)：所谓连接点是指那些被拦截到的点。在 Spring 中,这些点指的是方法,因为 Spring 只支持方法类型的连接点。</p>
+</li>
+<li><p>Pointcut(切入点)：所谓切入点是指我们要对哪些 Joinpoint 进行拦截的定义。 </p>
+</li>
+<li><p>Advice(通知/增强)：所谓通知是指拦截到 Joinpoint 之后所要做的事情就是通知。<br>通知的类型：前置通知,后置通知,异常通知,最终通知,环绕通知。 </p>
+</li>
+<li><p>Introduction(引介)：引介是一种特殊的通知在不修改类代码的前提下, Introduction 可以在运行期为类动态地添加一些方法或 Field。 </p>
+</li>
+<li><p>Target(目标对象)：代理的目标对象。 </p>
+</li>
+<li><p>Weaving(织入)：是指把增强应用到目标对象来创建新的代理对象的过程。   Spring 采用动态代理织入，而 AspectJ 采用编译期织入和类装载期织入。 </p>
+</li>
+<li><p>Proxy（代理）：一个类被 AOP 织入增强后，就产生一个结果代理类。 </p>
+</li>
+<li><p>Aspect(切面)：是切入点和通知（引介）的结合。 </p>
+</li>
+</ul>
+      
+      <a class="article-more-link" href="/2020/05/08/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9C%A8Spring%E4%B8%AD%E4%BD%BF%E7%94%A8AOP/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Spring学习笔记（七）：聊聊AOP与动态代理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/08/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E8%81%8A%E8%81%8AAOP%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"
+    >Spring学习笔记（七）：聊聊AOP与动态代理</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/08/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E8%81%8A%E8%81%8AAOP%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-date">
+  <time datetime="2020-05-08T06:23:53.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="AOP概述"><a href="#AOP概述" class="headerlink" title="AOP概述"></a>AOP概述</h2><h3 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h3><p>什么是AOP？AOP：全称是 Aspect Oriented Programming ，即：面向切面编程。 </p>
+<p>在百度百科中是这样说的：</p>
+<blockquote><p>在软件业，AOP为Aspect Oriented Programming的缩写，意为：面向切面编程，通过预编译方式和运行期间动态代理实现程序功能的统一维护的一种技术。AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
+<footer><strong>AOP</strong><cite>百度百科</cite></footer></blockquote>
+
+<p>简单的说它就是把我们程序重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。 </p>
+      
+      <a class="article-more-link" href="/2020/05/08/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E8%81%8A%E8%81%8AAOP%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-Spring学习笔记（六）：Spring整合Junit" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -687,170 +857,6 @@
 <h2 id="Mybatis一级缓存"><a href="#Mybatis一级缓存" class="headerlink" title="Mybatis一级缓存"></a>Mybatis一级缓存</h2><h3 id="1-证明一级缓存的存在"><a href="#1-证明一级缓存的存在" class="headerlink" title="1. 证明一级缓存的存在"></a>1. 证明一级缓存的存在</h3><p>一级缓存是SqlSession级别的缓存，只要SqlSession没有flush或close，它就存在。 </p>
       
       <a class="article-more-link" href="/2020/04/25/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-Mybatis学习笔记（八）：延迟加载策略" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/21/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/"
-    >Mybatis学习笔记（八）：延迟加载策略</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/04/21/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/" class="article-date">
-  <time datetime="2020-04-21T05:39:12.000Z" itemprop="datePublished">2020-04-21</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/code/">code</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="Mybatis延迟加载策略"><a href="#Mybatis延迟加载策略" class="headerlink" title="Mybatis延迟加载策略"></a>Mybatis延迟加载策略</h2><p>通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。 </p>
-<h2 id="何为延迟加载"><a href="#何为延迟加载" class="headerlink" title="何为延迟加载?"></a>何为延迟加载?</h2><ul>
-<li><p>延迟加载：<br>就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载. 好处：先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多张表速 度要快。  </p>
-</li>
-<li><p>坏处：<br>因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗时间，所以可能造成用户等待时间变长，造成用户体验下降。 </p>
-</li>
-</ul>
-      
-      <a class="article-more-link" href="/2020/04/21/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-Mybatis学习笔记（七）：多表查询之多对多" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/18/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/"
-    >Mybatis学习笔记（七）：多表查询之多对多</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/04/18/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/" class="article-date">
-  <time datetime="2020-04-18T04:30:48.000Z" itemprop="datePublished">2020-04-18</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/code/">code</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="实现Role到User多对多"><a href="#实现Role到User多对多" class="headerlink" title="实现Role到User多对多"></a>实现Role到User多对多</h2><p>通过前面的学习，我们使用Mybatis实现一对多关系的维护。  </p>
-<p>多对多关系其实我们看成是双向的一对多关系。  </p>
-<h3 id="1-用户与角色的关系模型"><a href="#1-用户与角色的关系模型" class="headerlink" title="1. 用户与角色的关系模型"></a>1. 用户与角色的关系模型</h3><p>用户与角色的多对多关系模型如下： </p>
-<img src="/2020/04/18/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/ManyToMany.png" class="" title="ManyToMany">
-
-<p>在MySQL数据库中添加角色表，用户角色的中间表。 </p>
-<p>角色表 : </p>
-<img src="/2020/04/18/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/role.png" class="" title="role">
-
-<p>用户角色中间表：</p>
-<img src="/2020/04/18/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/UserRole.png" class="" title="UserRole">
-      
-      <a class="article-more-link" href="/2020/04/18/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A/">阅读更多...</a>
       
       
       <!-- reward -->
