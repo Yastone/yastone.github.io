@@ -84,6 +84,158 @@
     
     
     
+    <article id="post-Mybatis学习笔记（十）：Mybatis注解开发" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/28/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AMybatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/"
+    >Mybatis学习笔记（十）：Mybatis注解开发</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/28/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AMybatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" class="article-date">
+  <time datetime="2020-04-28T07:45:20.000Z" itemprop="datePublished">2020-04-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>这几年来注解开发越来越流行，Mybatis 也可以使用注解开发方式，这样我们就可以减少编写 Mapper 映射文件了。</p>
+<h2 id="mybatis-的常用注解说明"><a href="#mybatis-的常用注解说明" class="headerlink" title="mybatis 的常用注解说明"></a>mybatis 的常用注解说明</h2><p>@Insert:实现新增<br>@Update:实现更新<br>@Delete:实现删除<br>@Select:实现查询<br>@Result:实现结果集封装<br>@Results:可以与@Result 一起使用，封装多个结果集<br>@ResultMap:实现引用<br>@Results 定义的封装<br>@One:实现一对一结果集封装<br>@Many:实现一对多结果集封装<br>@SelectProvider: 实现动态 SQL 映射<br>@CacheNamespace:实现注解二级缓存的使用 </p>
+<h2 id="使用-Mybatis-注解实现基本CRUD"><a href="#使用-Mybatis-注解实现基本CRUD" class="headerlink" title="使用 Mybatis 注解实现基本CRUD"></a>使用 Mybatis 注解实现基本CRUD</h2><p>单表的 CRUD 操作是最基本的操作，前面我们的学习都是基于Mybaits的映射文件来实现的。 </p>
+      
+      <a class="article-more-link" href="/2020/04/28/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AMybatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Mybatis学习笔记（九）：Mybatis缓存" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/25/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/"
+    >Mybatis学习笔记（九）：Mybatis缓存</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/25/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/" class="article-date">
+  <time datetime="2020-04-25T06:55:34.000Z" itemprop="datePublished">2020-04-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>像大多数的持久化框架一样，Mybatis也提供了缓存策略，通过缓存策略来减少数据库的查询次数，从而提高性能。  </p>
+<p>Mybatis 中缓存分为一级缓存，二级缓存。</p>
+<h2 id="Mybatis一级缓存"><a href="#Mybatis一级缓存" class="headerlink" title="Mybatis一级缓存"></a>Mybatis一级缓存</h2><h3 id="1-证明一级缓存的存在"><a href="#1-证明一级缓存的存在" class="headerlink" title="1. 证明一级缓存的存在"></a>1. 证明一级缓存的存在</h3><p>一级缓存是SqlSession级别的缓存，只要SqlSession没有flush或close，它就存在。 </p>
+      
+      <a class="article-more-link" href="/2020/04/25/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-Mybatis学习笔记（八）：延迟加载策略" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -718,179 +870,13 @@
 
 </article>
     
-    <article id="post-Markdown学习笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/01/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-    >Markdown学习笔记</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/04/01/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-04-01T13:02:52.000Z" itemprop="datePublished">2020-04-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">tool</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><blockquote>
-<pre><code># 一级标题  
-## 二级标题  
-### 三级标题  
-#### 四级标题  
-##### 五级标题  
-###### 六级标题  </code></pre><p>效果如下：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3>
-      
-      <a class="article-more-link" href="/2020/04/01/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-我个人的IDEA常用配置选项" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/"
-    >我个人的IDEA常用配置</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/04/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/" class="article-date">
-  <time datetime="2020-04-01T09:26:45.000Z" itemprop="datePublished">2020-04-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">tool</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="修改项目的Target-bytecode-version"><a href="#修改项目的Target-bytecode-version" class="headerlink" title="修改项目的Target bytecode version"></a>修改项目的Target bytecode version</h2><blockquote>
-<ol>
-<li><p>File -&gt; Setting   </p>
-</li>
-<li><p>找到Java Compiler项  </p>
-</li>
-</ol>
-<img src="/2020/04/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/Target_bytecode_version.png" class="" title="Target bytecode version">  
-
-<ol start="3">
-<li>将项目的Target bytecode version 值设置为本地Java的版本。</li>
-</ol>
-      
-      <a class="article-more-link" href="/2020/04/01/%E6%88%91%E4%B8%AA%E4%BA%BA%E7%9A%84IDEA%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>
