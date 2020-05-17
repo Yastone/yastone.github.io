@@ -84,6 +84,88 @@
     
     
     
+    <article id="post-Spring学习笔记（九）：JdbcTemplate从入门到吃灰" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/10/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJdbcTemplate%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%90%83%E7%81%B0/"
+    >Spring学习笔记（九）：JdbcTemplate从入门到吃灰</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/10/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJdbcTemplate%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%90%83%E7%81%B0/" class="article-date">
+  <time datetime="2020-05-10T01:49:50.000Z" itemprop="datePublished">2020-05-10</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="JdbcTemplate-概述"><a href="#JdbcTemplate-概述" class="headerlink" title="JdbcTemplate 概述"></a>JdbcTemplate 概述</h2><p>它是 Spring 框架中提供的一个对象，是对原始 Jdbc API 对象的简单封装。Spring 框架为我们提供了很多的操作模板类。 </p>
+<ul>
+<li><p>操作关系型数据的：<br>JdbcTemplate<br>HibernateTemplate </p>
+</li>
+<li><p>操作 nosql 数据库的：<br>RedisTemplate </p>
+</li>
+<li><p>操作消息队列的：<br>JmsTemplate </p>
+</li>
+</ul>
+      
+      <a class="article-more-link" href="/2020/05/10/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJdbcTemplate%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%90%83%E7%81%B0/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-Spring学习笔记（八）：在Spring中使用AOP" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -812,89 +894,13 @@
 
 </article>
     
-    <article id="post-Mybatis学习笔记（九）：Mybatis缓存" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/25/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/"
-    >Mybatis学习笔记（九）：Mybatis缓存</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/04/25/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/" class="article-date">
-  <time datetime="2020-04-25T06:55:34.000Z" itemprop="datePublished">2020-04-25</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/code/">code</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>像大多数的持久化框架一样，Mybatis也提供了缓存策略，通过缓存策略来减少数据库的查询次数，从而提高性能。  </p>
-<p>Mybatis 中缓存分为一级缓存，二级缓存。</p>
-<h2 id="Mybatis一级缓存"><a href="#Mybatis一级缓存" class="headerlink" title="Mybatis一级缓存"></a>Mybatis一级缓存</h2><h3 id="1-证明一级缓存的存在"><a href="#1-证明一级缓存的存在" class="headerlink" title="1. 证明一级缓存的存在"></a>1. 证明一级缓存的存在</h3><p>一级缓存是SqlSession级别的缓存，只要SqlSession没有flush或close，它就存在。 </p>
-      
-      <a class="article-more-link" href="/2020/04/25/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AMybatis%E7%BC%93%E5%AD%98/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>

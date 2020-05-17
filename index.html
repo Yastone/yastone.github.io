@@ -84,6 +84,83 @@
     
     
     
+    <article id="post-SpringMVC学习笔记（九）：SSM整合" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/17/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9ASSM%E6%95%B4%E5%90%88/"
+    >SpringMVC学习笔记（九）：SSM整合</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/17/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9ASSM%E6%95%B4%E5%90%88/" class="article-date">
+  <time datetime="2020-05-17T05:07:41.000Z" itemprop="datePublished">2020-05-17</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="创建数据库和表结构"><a href="#创建数据库和表结构" class="headerlink" title="创建数据库和表结构"></a>创建数据库和表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> ssm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">account</span>(</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line"><span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">100</span>),</span><br><span class="line">money <span class="keyword">double</span>(<span class="number">7</span>,<span class="number">2</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-Maven-工程"><a href="#创建-Maven-工程" class="headerlink" title="创建 Maven 工程"></a>创建 Maven 工程</h3><p>使用IDEA新建Maven工程，勾选Create from archetype,并选中webapp作为模板。</p>
+<p>在main文件夹下创建 java 和 resources 文件夹。</p>
+      
+      <a class="article-more-link" href="/2020/05/17/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9ASSM%E6%95%B4%E5%90%88/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-SpringMVC学习笔记（八）：拦截器" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -765,95 +842,13 @@
 
 </article>
     
-    <article id="post-Spring学习笔记（九）：JdbcTemplate从入门到吃灰" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/10/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJdbcTemplate%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%90%83%E7%81%B0/"
-    >Spring学习笔记（九）：JdbcTemplate从入门到吃灰</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/10/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJdbcTemplate%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%90%83%E7%81%B0/" class="article-date">
-  <time datetime="2020-05-10T01:49:50.000Z" itemprop="datePublished">2020-05-10</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/code/">code</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="JdbcTemplate-概述"><a href="#JdbcTemplate-概述" class="headerlink" title="JdbcTemplate 概述"></a>JdbcTemplate 概述</h2><p>它是 Spring 框架中提供的一个对象，是对原始 Jdbc API 对象的简单封装。Spring 框架为我们提供了很多的操作模板类。 </p>
-<ul>
-<li><p>操作关系型数据的：<br>JdbcTemplate<br>HibernateTemplate </p>
-</li>
-<li><p>操作 nosql 数据库的：<br>RedisTemplate </p>
-</li>
-<li><p>操作消息队列的：<br>JmsTemplate </p>
-</li>
-</ul>
-      
-      <a class="article-more-link" href="/2020/05/10/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJdbcTemplate%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%90%83%E7%81%B0/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>
