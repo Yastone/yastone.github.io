@@ -2528,4 +2528,130 @@ System.out.println(k == 0.3)</code></pre><p>显示结果同上。 </p>
         <tag>SpringMVC</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Java基础之多线程（一）</title>
+    <url>/2020/05/19/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>Java多线程编程一直是我的弱项，在学校的课程学习与课程设计中也很少涉及到此类问题。然而在最近的项目实践中不能熟练的运用多线程完成功能着实给我带来了很多困难，故在此系统的学习一下Java多线程技术。</p>
+<p>在学习Java多线程编程之前，先复习一下操作系统的基本知识。</p>
+<a id="more"></a>
+
+<h2 id="并发与并行"><a href="#并发与并行" class="headerlink" title="并发与并行"></a>并发与并行</h2><ul>
+<li>并发：指两个或多个事件在<strong>同一个时间段内</strong>发生。 </li>
+<li>并行：指两个或多个事件在<strong>同一时刻</strong>发生（同时发生）。</li>
+</ul>
+<p>在操作系统中，安装了多个程序，并发指的是在一段时间内宏观上有多个程序同时运行，这在单 CPU 系统中，每一时刻只能有一道程序执行，即微观上这些程序是分时的交替运行，只不过是给人的感觉是同时运行，那是因为分时交替运行的时间是非常短的。</p>
+<p>而在多个 CPU 系统中，则这些可以并发执行的程序便可以分配到多个处理器上（CPU），实现多任务并行执行，即利用每个处理器来处理一个可以并发执行的程序，这样多个程序便可以同时执行。目前电脑市场上说的多核 CPU，便是多核处理器，核心越多，并行处理的程序越多，能大大的提高电脑运行的效率。 </p>
+<p>注意：单核处理器的计算机肯定是不能并行的处理多个任务的，只能是多个任务在单个CPU上并发运行。同理,线程也是一样的，从宏观角度上理解线程是并行运行的，但是从微观角度上分析却是串行运行的，即一个线程一个线程的去运行，当系统只有一个CPU时，线程会以某种顺序执行多个线程，我们把这种情况称之为线程调度。</p>
+<h2 id="线程与进程"><a href="#线程与进程" class="headerlink" title="线程与进程"></a>线程与进程</h2><ul>
+<li><p>进程：<br>是指一个内存中运行的应用程序，每个进程都有一个独立的内存空间，一个应用程序可以同时运行多个进程；进程也是程序的一次执行过程，是系统运行程序的基本单位；系统运行一个程序即是一个进程从创建、运行到消亡的过程。 </p>
+</li>
+<li><p>线程：<br>线程是进程中的一个执行单元，负责当前进程中程序的执行，一个进程中至少有一个线程。一个进程中是可以有多个线程的，这个应用程序也可以称之为多线程程序。 简而言之：一个程序运行后至少有一个进程，一个进程中可以包含多个线程。</p>
+</li>
+</ul>
+<p>线程调度:  </p>
+<ul>
+<li><p>分时调度<br>所有线程轮流使用 CPU 的使用权，平均分配每个线程占用 CPU 的时间。 </p>
+</li>
+<li><p>抢占式调度<br>优先让优先级高的线程使用 CPU，如果线程的优先级相同，那么会随机选择一个(线程随机性)，Java使用的为 抢占式调度。   </p>
+</li>
+</ul>
+<h2 id="创建线程类"><a href="#创建线程类" class="headerlink" title="创建线程类"></a>创建线程类</h2><p>Java使用 <code>java.lang.Thread</code> 类代表线程，所有的线程对象都必须是Thread类或其子类的实例。每个线程的作用是完成一定的任务，实际上就是执行一段程序流即一段顺序执行的代码。Java使用线程执行体来代表这段程序流。   </p>
+<p>Java中通过继承Thread类来创建并启动多线程的步骤如下： </p>
+<ol>
+<li>定义Thread类的子类，并重写该类的run()方法，该run()方法的方法体就代表了线程需要完成的任务,因此把 run()方法称为线程执行体。  </li>
+<li>创建Thread子类的实例，即创建了线程对象   </li>
+<li>调用线程对象的start()方法来启动该线程  </li>
+</ol>
+<p>代码如下：</p>
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;      </span><br><span class="line">        <span class="comment">//创建自定义线程对象          </span></span><br><span class="line">        MyThread mt = <span class="keyword">new</span> MyThread(<span class="string">"新的线程！"</span>);          </span><br><span class="line">        <span class="comment">//开启新线程          </span></span><br><span class="line">        mt.start();          </span><br><span class="line">        <span class="comment">//在主方法中执行for循环          </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;          </span><br><span class="line">            System.out.println(<span class="string">"main线程！"</span>+i);              </span><br><span class="line">        &#125;          </span><br><span class="line">    &#125;      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义线程类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123; </span><br><span class="line">    <span class="comment">//定义指定线程名称的构造方法      </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyThread</span><span class="params">(String name)</span> </span>&#123;      </span><br><span class="line">        <span class="comment">//调用父类的String参数的构造方法，指定线程的名称          </span></span><br><span class="line">        <span class="keyword">super</span>(name);          </span><br><span class="line">    &#125;      </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**       </span></span><br><span class="line"><span class="comment">    * 重写run方法，完成该线程执行的逻辑       </span></span><br><span class="line"><span class="comment">    */</span>      </span><br><span class="line">    <span class="meta">@Override</span>      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;      </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;          </span><br><span class="line">            System.out.println(getName()+<span class="string">"：正在执行！"</span>+i);             </span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>thread</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java基础之内部类</title>
+    <url>/2020/05/19/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%86%85%E9%83%A8%E7%B1%BB/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>内部类是将一个类A定义在另一个类B里面，里面的那个类A就称为内部类，B则称为外部类。 </p>
+<p>内部类分为成员内部类和匿名内部类。 </p>
+<a id="more"></a>
+
+<h2 id="成员内部类"><a href="#成员内部类" class="headerlink" title="成员内部类"></a>成员内部类</h2><p>成员内部类是定义在类中方法外的类。</p>
+<p>定义格式：  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 外部类 </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> 内部类</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在描述事物时，若一个事物内部还包含其他事物，就可以使用内部类这种结构。比如，汽车类 Car 中包含发动机类 Engine ，这时， Engine 就可以使用内部类来描述，定义在成员位置。  </p>
+<p>代码举例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123; <span class="comment">//外部类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Engine</span> </span>&#123; <span class="comment">//内部类</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="访问特点"><a href="#访问特点" class="headerlink" title="访问特点"></a>访问特点</h3><ul>
+<li>内部类可以直接访问外部类的成员，包括私有成员。  </li>
+<li>外部类要访问内部类的成员，必须要建立内部类的对象。   </li>
+</ul>
+<p>创建内部类对象格式：<br>外部类名.内部类名 对象名 = new 外部类型().new 内部类型()；</p>
+<p>访问演示，代码如下：  </p>
+<p>定义类：  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> live = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Heart</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jump</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 直接访问外部类成员</span></span><br><span class="line">            <span class="keyword">if</span> (live) &#123;</span><br><span class="line">                System.out.println(<span class="string">"心脏在跳动"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">"心脏不跳了"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> live;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLive</span><span class="params">(<span class="keyword">boolean</span> live)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.live = live;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义测试类：  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建外部类对象</span></span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        <span class="comment">// 创建内部类对象</span></span><br><span class="line">        Heart heart = p.<span class="keyword">new</span> Heart();</span><br><span class="line">        <span class="comment">// 调用内部类方法</span></span><br><span class="line">        heart.jump();</span><br><span class="line">        <span class="comment">// 调用外部类方法</span></span><br><span class="line">        p.setLive(<span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">// 调用内部类方法</span></span><br><span class="line">        heart.jump();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：<br>心脏在跳动<br>心脏不跳了</p>
+<p>PS：</p>
+<p>内部类仍然是一个独立的类，在编译之后会内部类会被编译成独立的.class文件，但是前面冠以外部类的类名和$符号。  </p>
+<p>比如，Person$Heart.class</p>
+<h2 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h2><p>匿名内部类是内部类的简化写法。它的本质是一个带具体实现的父类或者父接口的匿名的子类对象。开发中，最常用到的内部类就是匿名内部类了。以接口举例，当你使用一个接口时，似乎得做如下几步操作：</p>
+<ol>
+<li>定义子类</li>
+<li>重写接口中的方法</li>
+<li>创建子类对象</li>
+<li>调用重写后的方法  </li>
+</ol>
+<p>如果我们的目的最终只是为了调用方法，那么能不能简化一下，把以上四步合成一步呢？匿名内部类就是做这样的快捷方式。 </p>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>匿名内部类必须继承一个父类或者实现一个父接口。  </p>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> 父类名或者接口名()&#123;</span><br><span class="line">    <span class="comment">// 方法重写</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 执行语句</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><p>以接口为例，匿名内部类的使用，代码如下：  </p>
+<p>定义接口：  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyAble</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建匿名内部类，并调用：  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        1.等号右边:是匿名内部类，定义并创建该接口的子类对象</span></span><br><span class="line"><span class="comment">        2.等号左边:是多态赋值,接口类型引用指向子类对象</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        FlyAble f = <span class="keyword">new</span> FlyAble()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"我飞了~~~"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//调用 fly方法,执行重写后的方法</span></span><br><span class="line">        f.fly();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通常在方法的形式参数是接口或者抽象类时，也可以将匿名内部类作为参数传递。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerDemo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        1.等号右边:定义并创建该接口的子类对象</span></span><br><span class="line"><span class="comment">        2.等号左边:是多态,接口类型引用指向子类对象</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        FlyAble f = <span class="keyword">new</span> FlyAble()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"我飞了~~~"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">// 将f传递给showFly方法中</span></span><br><span class="line">        showFly(f);</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showFly</span><span class="params">(FlyAble f)</span> </span>&#123;</span><br><span class="line">            f.fly();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上两步，也可以简化为一步，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerDemo3</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        创建匿名内部类,直接传递给showFly(FlyAble f)</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        showFly( <span class="keyword">new</span> FlyAble()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"我飞了~~~"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showFly</span><span class="params">(FlyAble f)</span> </span>&#123;</span><br><span class="line">        f.fly();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
 </search>
