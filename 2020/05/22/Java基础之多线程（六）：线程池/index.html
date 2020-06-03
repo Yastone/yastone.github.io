@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Mybatis学习笔记（四）：SqlMapConfig.xml配置文件 |  Neko
+    Java基础之多线程（六）：线程池 |  Neko
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -45,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-Mybatis学习笔记（四）：SqlMapConfig-xml配置文件" class="article article-type-post" itemscope
+  <article id="post-Java基础之多线程（六）：线程池" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -53,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Mybatis学习笔记（四）：SqlMapConfig.xml配置文件
+  Java基础之多线程（六）：线程池
 </h1>
  
 
@@ -62,8 +62,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/04/09/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9ASqlMapConfig-xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="article-date">
-  <time datetime="2020-04-09T08:56:54.000Z" itemprop="datePublished">2020-04-09</time>
+      <a href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="article-date">
+  <time datetime="2020-05-22T09:17:52.000Z" itemprop="datePublished">2020-05-22</time>
 </a>
       
   <div class="article-category">
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">718</span>
+            <span class="post-count">1k</span>
         </span>
     </span>
 
@@ -111,30 +111,49 @@
       
 
       
-      <h2 id="SqlMapConfig-xml中配置的内容和顺序"><a href="#SqlMapConfig-xml中配置的内容和顺序" class="headerlink" title="SqlMapConfig.xml中配置的内容和顺序"></a>SqlMapConfig.xml中配置的内容和顺序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-properties（属性）</span><br><span class="line">    --property </span><br><span class="line">-settings（全局配置参数）  </span><br><span class="line">    --setting </span><br><span class="line">-typeAliases（类型别名） </span><br><span class="line">    --typeAliase  </span><br><span class="line">    --package </span><br><span class="line">-typeHandlers（类型处理器） </span><br><span class="line">-objectFactory（对象工厂） </span><br><span class="line">-plugins（插件） </span><br><span class="line">-environments（环境集合属性对象）  </span><br><span class="line">    --environment（环境子属性对象）   </span><br><span class="line">        ---transactionManager（事务管理）   </span><br><span class="line">        ---dataSource（数据源） </span><br><span class="line">-mappers（映射器）  </span><br><span class="line">    --mapper  </span><br><span class="line">    --package</span><br></pre></td></tr></table></figure>
-
+      <h2 id="线程池思想概述"><a href="#线程池思想概述" class="headerlink" title="线程池思想概述"></a>线程池思想概述</h2><p>我们使用线程的时候就去创建一个线程，这样实现起来非常简便，但是就会有一个问题： </p>
+<p>如果并发的线程数量很多，并且每个线程都是执行一个时间很短的任务就结束了，这样频繁创建线程就会大大降低系统的效率，因为频繁创建线程和销毁线程需要时间。  </p>
+<p>那么有没有一种办法使得线程可以复用，就是执行完一个任务，并不被销毁，而是可以继续执行其他的任务？  </p>
+<p>在Java中可以通过线程池来达到这样的效果。</p>
 <a id="more"></a>
-<h2 id="properties（属性）"><a href="#properties（属性）" class="headerlink" title="properties（属性）"></a>properties（属性）</h2><p>在使用 properties 标签配置时，我们可以采用两种方式指定属性配置。 </p>
-<h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt; </span><br><span class="line">    &lt;property name&#x3D;&quot;jdbc.driver&quot; value&#x3D;&quot;com.mysql.jdbc.Driver&quot;&#x2F;&gt;  </span><br><span class="line">    &lt;property name&#x3D;&quot;jdbc.url&quot; value&#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;mybatis_db?characterEncoding&#x3D;utf-8&quot;&#x2F;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;jdbc.username&quot; value&#x3D;&quot;root&quot;&#x2F;&gt;  </span><br><span class="line">    &lt;property name&#x3D;&quot;jdbc.password&quot; value&#x3D;&quot;root&quot;&#x2F;&gt;  </span><br><span class="line">&lt;&#x2F;properties&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><ol>
-<li>在 classpath 下定义 jdbcConfig.properties 文件 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver&#x3D;com.mysql.jdbc.Driver </span><br><span class="line">jdbc.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;mybatis_db?characterEncoding&#x3D;utf-8</span><br><span class="line">jdbc.username&#x3D;root </span><br><span class="line">jdbc.password&#x3D;root</span><br></pre></td></tr></table></figure></li>
-<li>properties 标签配置 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置properties</span></span><br><span class="line"><span class="comment">     可以在标签内部配置连接数据库的信息。也可以通过属性引用外部配置文件信息</span></span><br><span class="line"><span class="comment">     resource属性： 常用的</span></span><br><span class="line"><span class="comment">         用于指定配置文件的位置，是按照类路径的写法来写，并且必须存在于类路径下。</span></span><br><span class="line"><span class="comment">     url属性：</span></span><br><span class="line"><span class="comment">         是要求按照Url的写法来写地址</span></span><br><span class="line"><span class="comment">         URL：Uniform Resource Locator 统一资源定位符。它是可以唯一标识一个资源的位置。</span></span><br><span class="line"><span class="comment">         它的写法：</span></span><br><span class="line"><span class="comment">             http://localhost:8080/mybatisserver/demo1Servlet</span></span><br><span class="line"><span class="comment">             协议      主机     端口       URI</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         URI:Uniform Resource Identifier 统一资源标识符。它是在应用中可以唯一定位一个资源的。</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">properties</span> <span class="attr">url</span>=<span class="string">"file:///D:/IdeaProjects/mybatisCRUD/src/main/resources/jdbcConfig.properties"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>dataSource 标签配置<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="线程池概念"><a href="#线程池概念" class="headerlink" title="线程池概念"></a>线程池概念</h2><p><strong>线程池</strong>：其实就是一个容纳多个程的容器，其中的线程可以反复使用，省去了频繁创建线程对象的操作，无需反复创建线程而消耗过多资源。</p>
+<p>解线程池的工作原理可以用这张图来表示：  </p>
+<img src="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0/thread_pool.png" class="">
 
-</li>
+<p>合理利用线程池能够带来三个好处： </p>
+<ol>
+<li>降低资源消耗。减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。</li>
+<li>提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。</li>
+<li>提高线程的可管理性。可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机)。</li>
 </ol>
-<h2 id="typeAliases（类型别名）"><a href="#typeAliases（类型别名）" class="headerlink" title="typeAliases（类型别名）"></a>typeAliases（类型别名）</h2><p>前面我们提到过 Mybatis 支持的默认别名，我们也可以采用自定义别名方式来开发。 </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- 单个别名定义 --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"user"</span> <span class="attr">type</span>=<span class="string">"domain.User"</span>/&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"domain"</span>/&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">" 其它包 "</span>/&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="mappers（映射器）"><a href="#mappers（映射器）" class="headerlink" title="mappers（映射器）"></a>mappers（映射器）</h2><ul>
-<li><p><code>&lt;mapper resource=&quot; &quot; /&gt;</code><br>使用相对于类路径的资源<br>如：<code>&lt;mapper resource=&quot;dao/IUserDao.xml&quot; /&gt;</code>   </p>
-</li>
-<li><p><code>&lt;mapper class=&quot; &quot; /&gt;</code><br>使用 mapper 接口类路径<br>如：<code>&lt;mapper class=&quot;dao.UserDao&quot;/&gt;</code><br><strong>注意：此种方法要求 mapper 接口名称和 mapper 映射文件名称相同，且放在同一个目录中。</strong></p>
-</li>
-<li><p><code>&lt;package name=&quot;&quot;/&gt;</code><br>注册指定包下的所有 mapper 接口<br>如：<code>&lt;package name=&quot;dao&quot;/&gt;</code><br><strong>注意：此种方法要求 mapper 接口名称和 mapper 映射文件名称相同，且放在同一个目录中</strong></p>
-</li>
+<h2 id="线程池的使用"><a href="#线程池的使用" class="headerlink" title="线程池的使用"></a>线程池的使用</h2><p>Java里面线程池的顶级接口是 <code>java.util.concurrent.Executor</code> ，但是严格意义上讲 <code>Executor</code> 并不是一个线程池，而只是一个执行线程的工具。真正的线程池接口是 <code>java.util.concurrent.ExecutorService</code> 。  </p>
+<p>要配置一个线程池是比较复杂的，尤其是对于线程池的原理不是很清楚的情况下，很有可能配置的线程池不是较优的，因此在 java.util.concurrent.Executors 线程工厂类里面提供了一些静态工厂，生成一些常用的线程池。官方建议使用Executors工程类来创建线程池对象。 </p>
+<p>Executors类中有个创建线程池的方法如下：  </p>
+<ul>
+<li>public static ExecutorService newFixedThreadPool(int nThreads) ：返回线程池对象。(创建的是有界线程池,也就是池中的线程个数可以指定最大数量)。</li>
 </ul>
+<p>获取到了一个线程池ExecutorService 对象，那么怎么使用呢，在这里定义了一个使用线程池对象的方法如下：</p>
+<ul>
+<li>public Future&lt;?&gt; submit(Runnable task) :获取线程池中的某一个线程对象，并执行。</li>
+</ul>
+<p>Future接口：用来记录线程任务执行完毕后产生的结果。线程池创建与使用。</p>
+<p>使用线程池中线程对象的步骤：</p>
+<ol>
+<li>创建线程池对象。 </li>
+<li>创建Runnable接口子类对象。(task)。 </li>
+<li>提交Runnable接口子类对象。(take task)。 </li>
+<li>关闭线程池(一般不做)。 </li>
+</ol>
+<p>Runnable实现类代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"我要一个教练"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"教练来了： "</span> + Thread.currentThread().getName());</span><br><span class="line">        System.out.println(<span class="string">"教我游泳,交完后，教练回到了游泳池"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>线程池测试类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建线程池对象</span></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">2</span>);<span class="comment">//包含2个线程对象</span></span><br><span class="line">        <span class="comment">// 创建Runnable实例对象</span></span><br><span class="line">        MyRunnable r = <span class="keyword">new</span> MyRunnable();</span><br><span class="line">        <span class="comment">//自己创建线程对象的方式</span></span><br><span class="line">        <span class="comment">// Thread t = new Thread(r);</span></span><br><span class="line">        <span class="comment">// t.start(); ‐‐‐&gt; 调用MyRunnable中的run()</span></span><br><span class="line">        <span class="comment">// 从线程池中获取线程对象,然后调用MyRunnable中的run()</span></span><br><span class="line">        service.submit(r);</span><br><span class="line">        <span class="comment">// 再获取个线程对象，调用MyRunnable中的run()</span></span><br><span class="line">        service.submit(r);</span><br><span class="line">        service.submit(r);</span><br><span class="line">        <span class="comment">// 注意：submit方法调用结束后，程序并不终止，是因为线程池控制了线程的关闭。</span></span><br><span class="line">        <span class="comment">// 将使用完的线程又归还到了线程池中</span></span><br><span class="line">        <span class="comment">// 关闭线程池</span></span><br><span class="line">        <span class="comment">//service.shutdown();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
 
       
       <!-- reward -->
@@ -189,14 +208,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yastone.github.io/2020/04/09/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9ASqlMapConfig-xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yastone.github.io/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thread/" rel="tag">thread</a></li></ul>
 
 
     </footer>
@@ -207,19 +226,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/04/13/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/" class="article-nav-link">
+      <a href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8BLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Mybatis学习笔记（五）：动态SQL语句
+            Java基础之Lambda表达式
           
         </div>
       </a>
     
     
-      <a href="/2020/04/06/Mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E7%9A%84%E5%B0%81%E8%A3%85/" class="article-nav-link">
+      <a href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E7%AD%89%E5%BE%85%E5%94%A4%E9%86%92%E6%9C%BA%E5%88%B6/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Mybatis学习笔记（三）：输出结果的封装与resultMap的使用</div>
+        <div class="article-nav-title">Java基础之多线程（五）：等待唤醒机制</div>
       </a>
     
   </nav>
