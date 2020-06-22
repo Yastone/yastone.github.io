@@ -117,6 +117,8 @@
 <li><code>public File(String parent, String child)</code> ：从父路径名字符串和子路径名字符串创建新的 File实例。 </li>
 <li><code>public File(File parent, String child)</code> ：从父抽象路径名和子路径名字符串创建新的 File实例。</li>
 </ul>
+<a id="more"></a>
+
 <p>构造举例，代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件路径名</span></span><br><span class="line">String pathname = <span class="string">"D:\\aaa.txt"</span>;</span><br><span class="line">File file1 = <span class="keyword">new</span> File(pathname);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径名</span></span><br><span class="line">String pathname2 = <span class="string">"D:\\aaa\\bbb.txt"</span>;</span><br><span class="line">File file2 = <span class="keyword">new</span> File(pathname2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过父路径和子路径字符串</span></span><br><span class="line">String parent = <span class="string">"d:\\aaa"</span>;</span><br><span class="line">String child = <span class="string">"bbb.txt"</span>;</span><br><span class="line">File file3 = <span class="keyword">new</span> File(parent, child);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过父级File对象和子路径字符串</span></span><br><span class="line">File parentDir = <span class="keyword">new</span> File(<span class="string">"d:\\aaa"</span>);</span><br><span class="line">String child = <span class="string">"bbb.txt"</span>;</span><br><span class="line">File file4 = <span class="keyword">new</span> File(parentDir, child);</span><br></pre></td></tr></table></figure>
 
@@ -287,6 +289,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/06/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8BCollection%E7%B1%BB/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Java基础之Collection类
+          
+        </div>
+      </a>
     
     
       <a href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8BLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-nav-link">
