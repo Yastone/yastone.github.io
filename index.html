@@ -84,6 +84,361 @@
     
     
     
+    <article id="post-C-基础之拆装箱" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/28/C-%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8B%86%E8%A3%85%E7%AE%B1/"
+    >C#基础之拆装箱</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/28/C-%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8B%86%E8%A3%85%E7%AE%B1/" class="article-date">
+  <time datetime="2020-06-28T09:30:43.000Z" itemprop="datePublished">2020-06-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="装箱-box"><a href="#装箱-box" class="headerlink" title="装箱 (box)"></a>装箱 (box)</h2><ul>
+<li>值类型隐式转换为 object 类型或由此值类型实现的任何接口类型的过程 。</li>
+<li>内部机制:<ul>
+<li><ol>
+<li>在堆中开辟内存空间</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>将值类型的数据复制到堆中</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>返回堆中新分配对象的地址</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="拆箱-unbox"><a href="#拆箱-unbox" class="headerlink" title="拆箱 (unbox)"></a>拆箱 (unbox)</h2><ul>
+<li>从 object 类型到值类型或从接口类型到实现该接口的值类型的显式转换。</li>
+<li>内部机制:<ul>
+<li><ol>
+<li>判断给定类型是否是装箱时的类型</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>返回已装箱实例中属于原值类型字段</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>拆箱后的类型必须与装箱时的类型相同。</li>
+<li>伴随拆箱的字段复制步骤不属于拆箱过程 。</li>
+<li>装箱和拆箱不是互逆的过程 ,装箱的性能开销远大于拆箱。</li>
+</ul>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    int a &#x3D; 1;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;装箱操作，较拆箱更消耗性能</span><br><span class="line">    object o &#x3D; a;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;拆箱操作，比较消耗性能</span><br><span class="line">    int b &#x3D; (int)o;</span><br><span class="line"></span><br><span class="line">    int num &#x3D; 100;</span><br><span class="line">    string str &#x3D; num.ToString(); &#x2F;&#x2F;没有装箱</span><br><span class="line"></span><br><span class="line">    string str02 &#x3D; num + &quot;&quot;; &#x2F;&#x2F;触发装箱机制</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>形参是object类型，而实参传递值类型，则装箱  </li>
+<li>可以通过重载、泛型避免装箱。</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-C-基础之值与引用" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/28/C-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%80%BC%E4%B8%8E%E5%BC%95%E7%94%A8/"
+    >C#基础之值与引用</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/28/C-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%80%BC%E4%B8%8E%E5%BC%95%E7%94%A8/" class="article-date">
+  <time datetime="2020-06-28T07:18:23.000Z" itemprop="datePublished">2020-06-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="类型分类"><a href="#类型分类" class="headerlink" title="类型分类"></a>类型分类</h2><p>通用类型系统 CTS(Common Type System) 是 .NET 框架中的一个组成部分 , 为所有面向 .NET 框架的语言定义了数据类型的规则。  </p>
+<ul>
+<li><p>值类型 : 存储数据本身。  </p>
+</li>
+<li><p>引用类型 : 存储数据的引用。  </p>
+</li>
+</ul>
+      
+      <a class="article-more-link" href="/2020/06/28/C-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%80%BC%E4%B8%8E%E5%BC%95%E7%94%A8/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Java基础之网络编程" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/23/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+    >Java基础之网络编程</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/23/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2020-06-23T01:22:49.000Z" itemprop="datePublished">2020-06-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="第一章-网络编程入门"><a href="#第一章-网络编程入门" class="headerlink" title="第一章 网络编程入门"></a>第一章 网络编程入门</h1><h2 id="1-1软件结构"><a href="#1-1软件结构" class="headerlink" title="1.1软件结构"></a>1.1软件结构</h2><ul>
+<li><strong>C/S结构</strong> ：全称为Client/Server结构，是指客户端和服务器结构。常见程序有QQ、迅雷等软件。</li>
+</ul>
+<p><strong>B/S结构</strong> ：全称为Browser/Server结构，是指浏览器和服务器结构。常见浏览器有谷歌、火狐等。</p>
+<p>两种架构各有优势，但是无论哪种架构，都离不开网络的支持。<strong>网络编程</strong>，就是在一定的协议下，实现两台计算机的通信的程序。</p>
+<blockquote>
+<p>ps: 以上是网络上常见的说法，在我个人的理解中，B/S架构本质上还是C/S架构，B/S架构是C/S架构的一种特殊的实现方式。</p>
+</blockquote>
+      
+      <a class="article-more-link" href="/2020/06/23/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-Java基础之缓冲流、打印流与序列化流" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/23/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E6%89%93%E5%8D%B0%E6%B5%81%E4%B8%8E%E5%BA%8F%E5%88%97%E5%8C%96%E6%B5%81/"
+    >Java基础之缓冲流、打印流与序列化流</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/23/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E6%89%93%E5%8D%B0%E6%B5%81%E4%B8%8E%E5%BA%8F%E5%88%97%E5%8C%96%E6%B5%81/" class="article-date">
+  <time datetime="2020-06-23T00:19:01.000Z" itemprop="datePublished">2020-06-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/code/">code</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h1><p>作为IO流的入门，今天我们要学习一些更强大的流。比如能够高效读写的缓冲流，能够转换编码的转换流，能够持久化存储对象的序列化流等等。这些功能更为强大的流，都是在基本的流对象基础之上创建而来的，就像穿上铠甲的武士一样，相当于是对基本流对象的一种增强。</p>
+<h2 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><p>缓冲流,也叫高效流，是对4个基本的<code>FileXxx</code> 流的增强，所以也是4个流，按照数据类型分类：</p>
+<ul>
+<li><strong>字节缓冲流</strong>：<code>BufferedInputStream</code>，<code>BufferedOutputStream</code> </li>
+<li><strong>字符缓冲流</strong>：<code>BufferedReader</code>，<code>BufferedWriter</code></li>
+</ul>
+<p>缓冲流的基本原理，是在创建流对象时，会创建一个内置的默认大小的缓冲区数组，通过缓冲区读写，减少系统IO次数，从而提高读写的效率。</p>
+      
+      <a class="article-more-link" href="/2020/06/23/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E6%89%93%E5%8D%B0%E6%B5%81%E4%B8%8E%E5%BA%8F%E5%88%97%E5%8C%96%E6%B5%81/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-Java基础之字节流和字符流" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -534,344 +889,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-Java基础之Lambda表达式" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8BLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
-    >Java基础之Lambda表达式</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8BLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
-  <time datetime="2020-05-22T09:28:31.000Z" itemprop="datePublished">2020-05-22</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/code/">code</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>在数学中，函数就是有输入量、输出量的一套计算方案，也就是“拿什么东西做什么事情”。相对而言，面向对象过分强调“必须通过对象的形式来做事情”，而函数式思想则尽量忽略面向对象的复杂语法——强调做什么，而不是以什么形式做。  </p>
-<p>面向对象的思想:  </p>
-<p>做一件事情,找一个能解决这个事情的对象,调用对象的方法,完成事情。</p>
-<p>函数式编程思想:  </p>
-<p>只要能获取到结果,谁去做的,怎么做的都不重要,重视的是结果,不重视过程。</p>
-      
-      <a class="article-more-link" href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8BLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thread/" rel="tag">thread</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-Java基础之多线程（六）：线程池" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0/"
-    >Java基础之多线程（六）：线程池</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="article-date">
-  <time datetime="2020-05-22T09:17:52.000Z" itemprop="datePublished">2020-05-22</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/code/">code</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="线程池思想概述"><a href="#线程池思想概述" class="headerlink" title="线程池思想概述"></a>线程池思想概述</h2><p>我们使用线程的时候就去创建一个线程，这样实现起来非常简便，但是就会有一个问题： </p>
-<p>如果并发的线程数量很多，并且每个线程都是执行一个时间很短的任务就结束了，这样频繁创建线程就会大大降低系统的效率，因为频繁创建线程和销毁线程需要时间。  </p>
-<p>那么有没有一种办法使得线程可以复用，就是执行完一个任务，并不被销毁，而是可以继续执行其他的任务？  </p>
-<p>在Java中可以通过线程池来达到这样的效果。</p>
-      
-      <a class="article-more-link" href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thread/" rel="tag">thread</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-Java基础之多线程（五）：等待唤醒机制" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E7%AD%89%E5%BE%85%E5%94%A4%E9%86%92%E6%9C%BA%E5%88%B6/"
-    >Java基础之多线程（五）：等待唤醒机制</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E7%AD%89%E5%BE%85%E5%94%A4%E9%86%92%E6%9C%BA%E5%88%B6/" class="article-date">
-  <time datetime="2020-05-22T08:54:42.000Z" itemprop="datePublished">2020-05-22</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/code/">code</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h2><ul>
-<li><strong>概念</strong>：多个线程在处理同一个资源，但是处理的动作（线程的任务）却不相同。<br>比如：线程A用来生成包子的，线程B用来吃包子的，包子可以理解为同一资源，线程A与线程B处理的动作，一个是生产，一个是消费，那么线程A与线程B之间就存在线程通信问题。</li>
-</ul>
-      
-      <a class="article-more-link" href="/2020/05/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E7%AD%89%E5%BE%85%E5%94%A4%E9%86%92%E6%9C%BA%E5%88%B6/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thread/" rel="tag">thread</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-Java基础之多线程（四）：线程状态" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/21/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/"
-    >Java基础之多线程（四）：线程状态</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/21/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" class="article-date">
-  <time datetime="2020-05-21T02:16:29.000Z" itemprop="datePublished">2020-05-21</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/code/">code</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="线程状态概述"><a href="#线程状态概述" class="headerlink" title="线程状态概述"></a>线程状态概述</h2><p>当线程被创建并启动以后，它既不是一启动就进入了执行状态，也不是一直处于执行状态。在线程的生命周期中，有几种状态呢？在API中 java.lang.Thread.State 这个枚举中给出了六种线程状态：  </p>
-<p>这里先列出各个线程状态发生的条件，下面将会对每种状态进行详细解析  </p>
-<table>
-<thead>
-<tr>
-<th>线程状态</th>
-<th>导致状态发生条件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>NEW(新建)</td>
-<td>线程刚被创建，但是并未启动。还没调用start方法。</td>
-</tr>
-<tr>
-<td>Runnable(可运行)</td>
-<td>线程可以在java虚拟机中运行的状态，可能正在运行自己代码，也可能没有，这取决于操作系统处理器。</td>
-</tr>
-<tr>
-<td>Blocked(锁阻塞)</td>
-<td>当一个线程试图获取一个对象锁，而该对象锁被其他的线程持有，则该线程进入Blocked状态；当该线程持有锁时，该线程将变成Runnable状态</td>
-</tr>
-<tr>
-<td>Waiting(无限等待)</td>
-<td>一个线程在等待另一个线程执行一个（唤醒）动作时，该线程进入Waiting状态。进入这个状态后是不能自动唤醒的，必须等待另一个线程调用notify或者notifyAll方法才能够唤醒</td>
-</tr>
-<tr>
-<td>Timed Waiting(计时等待)</td>
-<td>同waiting状态，有几个方法有超时参数，调用他们将进入Timed Waiting状态。这一状态将一直保持到超时期满或者接收到唤醒通知。带有超时参数的常用方法有Thread.sleep、Object.wait。</td>
-</tr>
-<tr>
-<td>Teminated(被终止)</td>
-<td>因为run方法正常退出而死亡，或者因为没有捕获的异常终止了run方法而死亡</td>
-</tr>
-</tbody></table>
-      
-      <a class="article-more-link" href="/2020/05/21/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thread/" rel="tag">thread</a></li></ul>
 
 
     </footer>
